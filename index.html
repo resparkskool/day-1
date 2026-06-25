@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Here | Respark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e27;
+  --bg-card: rgba(255,255,255,0.04);
+  --ink: #f5f3ff;
+  --ink-muted: rgba(245,243,255,0.68);
+  --ink-faint: rgba(245,243,255,0.38);
+  --fire-yellow: #FFD94A;
+  --fire-amber: #FFA826;
+  --fire-orange: #FF7A1A;
+  --fire-red: #FF4C0D;
+  --fire-ember: #C23A14;
+  --divider: rgba(255,255,255,0.08);
+  --divider-strong: rgba(255,255,255,0.14);
+  --radius: 8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,122,26,0.12) 0%, transparent 42%),
+    radial-gradient(circle at 85% 20%, rgba(255,168,38,0.10) 0%, transparent 44%),
+    radial-gradient(circle at 50% 95%, rgba(255,76,13,0.09) 0%, transparent 46%),
+    var(--bg);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,14,39,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--divider);padding:0 32px;}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:12px 0;}
+.nav-brand{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--fire-amber);margin-right:16px;white-space:nowrap;}
+.nav-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;padding:7px 13px;border-radius:100px;border:1px solid var(--divider-strong);background:transparent;color:var(--ink-faint);cursor:pointer;transition:all 0.18s;white-space:nowrap;}
+.nav-btn:hover{border-color:var(--fire-amber);color:var(--fire-amber);}
+.nav-btn.active{background:linear-gradient(90deg,var(--fire-orange),var(--fire-red));border-color:transparent;color:#fff;box-shadow:0 4px 18px rgba(255,76,13,0.38);}
+.page{display:none;animation:fadeUp 0.3s ease;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.wrap{max-width:860px;margin:0 auto;padding:64px 40px 100px;}
+.hero{text-align:center;padding:56px 0 64px;border-bottom:1px solid var(--divider);}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--fire-amber);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--fire-amber);}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(44px,8vw,76px);line-height:1.0;letter-spacing:-0.02em;margin-bottom:18px;}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--fire-yellow),var(--fire-amber) 40%,var(--fire-orange) 72%,var(--fire-red));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(15px,2vw,19px);color:var(--ink-muted);max-width:560px;margin:0 auto;}
+.sec-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;margin-top:56px;}
+.sec-title{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,4.2vw,42px);line-height:1.1;letter-spacing:-0.015em;margin-bottom:32px;}
+.sec-title em{font-style:italic;color:var(--fire-amber);}
+.card{background:var(--bg-card);border:1px solid var(--divider);border-radius:var(--radius);padding:30px 32px;margin-bottom:18px;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:-48px;right:-48px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,26,0.12),transparent 70%);pointer-events:none;}
+.card-title{font-family:'Fraunces',serif;font-weight:400;font-size:21px;color:var(--ink);margin-bottom:8px;}
+.card-title em{font-style:italic;font-weight:300;}
+.card p{font-size:15.5px;color:var(--ink-muted);line-height:1.65;margin-bottom:12px;}
+.card p:last-child{margin-bottom:0;}
+.flame-callout{margin:28px 0;padding:22px 26px;border-left:3px solid var(--fire-orange);background:rgba(255,122,26,0.06);border-radius:0 var(--radius) var(--radius) 0;font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--ink);line-height:1.55;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0;}
+.col-card{background:var(--bg-card);border:1px solid var(--divider);border-radius:var(--radius);padding:24px;}
+.col-card h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:14px;}
+.col-card ul{list-style:none;padding:0;}
+.col-card li{font-size:14.5px;color:var(--ink-muted);padding:7px 0;border-bottom:1px solid var(--divider);line-height:1.5;}
+.col-card li:last-child{border-bottom:none;}
+.col-card li::before{content:'';display:inline-block;width:12px;height:1px;background:var(--fire-amber);margin-right:12px;vertical-align:middle;}
+.write-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--fire-amber);margin-top:18px;margin-bottom:9px;}
+.write-box,.decl-input{width:100%;padding:14px 18px;background:rgba(255,255,255,0.03);border:1px dashed var(--divider-strong);border-radius:var(--radius);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;resize:vertical;transition:border-color 0.2s;}
+.write-box{min-height:90px;}
+.write-box:focus,.decl-input:focus{outline:none;border-color:var(--fire-amber);}
+.write-box::placeholder,.decl-input::placeholder{color:var(--ink-faint);font-style:italic;}
+.copy-btn{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;padding:12px 22px;border-radius:100px;cursor:pointer;background:linear-gradient(90deg,var(--fire-orange),var(--fire-red));border:none;color:#fff;margin-top:18px;box-shadow:0 4px 20px rgba(255,76,13,0.3);transition:all 0.2s;}
+.copy-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(255,76,13,0.42);}
+.copy-btn.copied{background:rgba(255,255,255,0.1);box-shadow:none;color:var(--ink-faint);}
+.save-pill{position:fixed;bottom:24px;right:24px;z-index:300;padding:9px 16px;border-radius:100px;background:rgba(20,25,56,0.95);border:1px solid var(--divider-strong);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--fire-amber);opacity:0;transition:opacity 0.3s;}
+.save-pill::before{content:'\25CF ';color:var(--fire-amber);}
+.save-pill.show{opacity:1;}
+.cal-card{background:linear-gradient(135deg,rgba(255,122,26,0.1),rgba(255,76,13,0.06));border:1px solid var(--divider-strong);border-radius:var(--radius);padding:30px 32px;margin:24px 0;}
+.cal-card a.cal-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--fire-amber);text-decoration:none;border-bottom:1px solid var(--fire-amber);padding-bottom:3px;}
+.step-list{list-style:none;padding:0;counter-reset:sl;margin:18px 0;}
+.step-list li{counter-increment:sl;padding:10px 0 10px 38px;position:relative;font-size:14.5px;color:var(--ink-muted);line-height:1.55;}
+.step-list li::before{content:counter(sl);position:absolute;left:0;top:9px;width:22px;height:22px;border-radius:50%;background:rgba(255,168,38,0.14);border:1px solid var(--divider-strong);color:var(--fire-amber);font-family:'JetBrains Mono',monospace;font-size:11px;display:flex;align-items:center;justify-content:center;}
+.day-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;padding:6px 14px;border-radius:100px;background:linear-gradient(90deg,var(--fire-amber),var(--fire-orange));color:#1a1206;margin-bottom:18px;}
+@media(max-width:680px){.wrap{padding:48px 20px 100px;}.two-col{grid-template-columns:1fr;}.nav-inner{gap:4px;}.nav-brand{display:none;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">Respark</span>
+    <button class="nav-btn active" data-page="welcome">Welcome</button>
+    <button class="nav-btn" data-page="why">Why We Built This</button>
+    <button class="nav-btn" data-page="how">How This Works</button>
+    <button class="nav-btn" data-page="day1">Today: Day 1</button>
+  </div>
+</nav>
+
+<!-- PAGE: WELCOME -->
+<div class="page active" id="page-welcome">
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-eyebrow">Start Here &nbsp;·&nbsp; First Stop</div>
+    <h1>Welcome to<br><em>Respark</em></h1>
+    <p class="hero-sub">Before anything else, let's get you oriented — to this space, to how it works, and to one new word you'll see everywhere.</p>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:48px;">/ A Word You'll See A Lot: Artifact</div>
+  <div class="card">
+    <div class="card-title">What is an <em>Artifact</em>?</div>
+    <p>Inside Respark, "Artifact" is our name for these interactive tools — the thing you're sitting inside of right now. Not a PDF. Not a workbook you print and lose in a drawer. An Artifact is something you actually move through: you click, you type, you reflect, and it builds something specific to you as you go.</p>
+    <p>Every tool in this community — the quiz, the exercises in The Library, the deeper work inside Fire Tools — is an Artifact. Same idea, different content each time.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ Why Interactive, Not Just Reading</div>
+  <div class="card">
+    <p>You could read an article about boundaries and nod along. You could fill out an Artifact about boundaries and walk away with your own words, your own examples, your own next step — written by you, for you.</p>
+    <div class="flame-callout">Remembering who you are isn't a spectator sport. The parts of this that ask something of you are the parts that actually change something.</div>
+    <p>That's the whole bet behind these tools: insight that you build yourself sticks in a way that insight you only consume rarely does.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ It Saves Your Place — Here's Exactly How</div>
+  <div class="card">
+    <p>As you type into any field in an Artifact, it saves automatically — you'll see a small "saved" indicator appear in the corner. Close the tab, come back tomorrow, and your answers will still be sitting there.</p>
+    <p>One honest detail worth knowing: this save lives in <em>this specific browser, on this specific device</em>. Think of it like a notebook you keep on one particular desk — it'll be there every time you sit back down at that desk, but it won't follow you if you switch from your laptop to your phone, or if you clear your browser's history and data. Same browser, same device, and your work is exactly where you left it.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- PAGE: WHY WE BUILT THIS -->
+<div class="page" id="page-why">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Why This Space Exists</div>
+  <div class="sec-title">The problem we solve:<br><em>misalignment</em></div>
+
+  <div class="card">
+    <p>Most people are stuck in an endless cycle of adding more tactics, learning new strategies, and picking up additional skills — hoping this will finally be the thing that creates the breakthrough they're after.</p>
+    <p>Here's what we've found after years of coaching: the problem usually isn't what you think it is. The real issue is misalignment — and it's happening much deeper than you realize.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ The Alignment Pyramid</div>
+  <p style="color:var(--ink-muted);font-size:15px;margin-bottom:8px;">Five levels. Most people pour all their energy into the very top — but lasting change happens from the bottom up.</p>
+
+  <svg viewBox="0 0 600 380" style="width:100%;max-width:520px;display:block;margin:28px auto;">
+    <polygon points="300,20 220,110 380,110" fill="#FFF4D6"/>
+    <polygon points="220,110 160,180 440,180 380,110" fill="var(--fire-yellow)"/>
+    <polygon points="160,180 110,250 490,250 440,180" fill="var(--fire-amber)"/>
+    <polygon points="110,250 60,320 540,320 490,250" fill="var(--fire-orange)"/>
+    <polygon points="60,320 20,360 580,360 540,320" fill="var(--fire-red)"/>
+    <text x="300" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="600" fill="#1a1206" letter-spacing="2">HOW</text>
+    <text x="300" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600" fill="#2a1d06" letter-spacing="2">HANDS</text>
+    <text x="300" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" font-weight="600" fill="#2a1404" letter-spacing="2">HEALTH</text>
+    <text x="300" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700" fill="#fff7ec" letter-spacing="2">HEAD</text>
+    <text x="300" y="345" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" fill="#fff0e6" letter-spacing="2">HEART</text>
+  </svg>
+
+  <div class="card">
+    <div class="card-title">HOW <em>— top level, least important</em></div>
+    <p style="color:var(--fire-amber);font-size:12.5px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Tactics · Strategies · Systems · Methods</p>
+    <p>This is probably what brought you here — a new framework, a better system, the "right" strategy. Tactics matter, but they're the least important part of lasting change: strategies shift constantly, and if the foundation underneath them isn't solid, no new tactic will hold.</p>
+    <p style="color:var(--ink-faint);font-size:14px;">The trap: trying to fix everything at this level — always chasing the next technique.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">HANDS <em>— second level</em></div>
+    <p style="color:var(--fire-amber);font-size:12.5px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Skills · Abilities · Doing · Execution</p>
+    <p>Your actual capabilities — what you can do, how well you do it, your capacity to execute. Skills matter, but even the most skilled person struggles if the deeper levels aren't aligned.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">HEALTH <em>— third level</em></div>
+    <p style="color:var(--fire-amber);font-size:12.5px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Energy · Stamina · Resilience · Output</p>
+    <p>Your physical and mental energy touches everything above it. Without sustainable energy and recovery, even great skills and tactics get inconsistent.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">HEAD <em>— fourth level</em></div>
+    <p style="color:var(--fire-amber);font-size:12.5px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Beliefs · Perceptions · Vision · Mental Clarity</p>
+    <p>Here's where the real drivers of behavior live. Your beliefs about what's possible, how you see yourself and your circumstances, and the clarity of your vision shape how you show up — more than most people realize.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">HEART <em>— bottom level, most important</em></div>
+    <p style="color:var(--fire-amber);font-size:12.5px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Purpose · Passion · Excitement · Feeling at Home</p>
+    <p>The foundation. Your deepest sense of purpose, what truly excites you, that feeling of being exactly where you're meant to be. When your heart is aligned, everything else flows more naturally. When it's not, even perfect tactics feel forced.</p>
+  </div>
+
+  <div class="flame-callout">Most coaching fails when it focuses on the wrong level. People come looking for the "how" when their real challenge is heart-level alignment — they're seeking an external solution for an internal misalignment.</div>
+
+  <div class="card">
+    <div class="card-title">This community exists to help you</div>
+    <ul style="list-style:none;padding:0;margin-top:6px;">
+      <li style="padding:8px 0;border-bottom:1px solid var(--divider);">Identify where your real misalignment is happening — it's usually lower on the pyramid than you think</li>
+      <li style="padding:8px 0;border-bottom:1px solid var(--divider);">Work from the foundation up, instead of constantly fixing the surface</li>
+      <li style="padding:8px 0;border-bottom:1px solid var(--divider);">Create lasting change that feels natural and sustainable</li>
+      <li style="padding:8px 0;">Build all five levels in harmony, so they support each other instead of fighting</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The result: flow instead of force</div>
+    <p>When all five levels are aligned, you don't have to force results — they flow naturally from who you are. Your tactics work because they're supported by solid skills, sustained energy, clear vision, and deep purpose.</p>
+    <p>You stop swimming upstream. You start feeling what it's like when everything clicks. That's what we're here to help you create.</p>
+    <p style="color:var(--ink-faint);font-size:14px;margin-top:14px;">— Alena &amp; Orlando</p>
+  </div>
+
+</div>
+</div>
+
+<!-- PAGE: HOW THIS WORKS -->
+<div class="page" id="page-how">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Getting The Most From This Space</div>
+  <div class="sec-title">How this<br><em>community works</em></div>
+
+  <div class="cal-card">
+    <div class="card-title" style="margin-bottom:6px;">Get in the room, live</div>
+    <p>Everything in here — the Artifacts, the Library, the recordings — supports the part that actually moves the needle fastest: showing up live. A live coaching call is where a pattern gets named out loud, in real time, with eyes on it that aren't your own. Replays are useful. Being in the room is different.</p>
+    <p>The calendar lives right inside Skool — there's a quick video tour waiting for you there that'll show you exactly where to find it.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ Three Small Ways To Actually Show Up</div>
+  <div class="two-col">
+    <div class="col-card">
+      <h3 style="color:var(--fire-amber);">/ Post</h3>
+      <ul><li>Share what you're working through</li><li>Post an insight from an Artifact</li><li>You don't need it polished — just real</li></ul>
+    </div>
+    <div class="col-card">
+      <h3 style="color:var(--fire-orange);">/ Comment</h3>
+      <ul><li>Respond to someone else's post</li><li>Tell them what landed for you</li><li>This is where the community part happens</li></ul>
+    </div>
+  </div>
+  <div class="col-card" style="margin-top:18px;">
+    <h3 style="color:var(--fire-yellow);">/ Like what helps</h3>
+    <ul><li>Found a post genuinely useful? Like it.</li><li>It tells us — and other members — what's actually landing</li><li>Small action, real signal</li></ul>
+  </div>
+
+  <div class="flame-callout">A community is only as alive as the people willing to be seen in it. You don't have to perform here — you just have to show up.</div>
+
+</div>
+</div>
+
+<!-- PAGE: DAY 1 -->
+<div class="page" id="page-day1">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ The 5-Day Challenge Begins Now</div>
+  <span class="day-badge">Day 1 of 5</span>
+  <div class="sec-title">Today is<br><em>Day 1</em></div>
+
+  <div class="card">
+    <p>Over the next five days, one small daily move builds toward the same place: remembering one part of yourself you've drifted from. You're already on Day 1 — right now, today. Days 2 through 5 continue inside the <strong>5-Day Challenge</strong> classroom, picking up tomorrow.</p>
+    <p>Two things matter most today.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ First: Name It</div>
+  <div class="card">
+    <p>Before any tool, any framework, any tactic — just notice.</p>
+    <div class="write-label">/ What's the version of you you've lost touch with?</div>
+    <textarea class="write-box" placeholder="No fix needed yet. Just name it." data-key="day1-nameit"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ Second: Introduce Yourself</div>
+  <div class="card">
+    <p>Fill in the four prompts below. We'll compile them into a short prompt — copy it, paste it into any AI assistant (ChatGPT, Claude, whichever you've got), and it'll hand you back a warm, natural introduction. Copy <em>that</em> result and post it in the community feed.</p>
+
+    <ol class="step-list">
+      <li>Answer the four prompts below</li>
+      <li>Click "Copy My Prompt"</li>
+      <li>Paste it into any AI assistant</li>
+      <li>Copy what it gives you back</li>
+      <li>Paste that into the community as your intro post</li>
+    </ol>
+
+    <div class="write-label">/ My name</div>
+    <input class="decl-input" type="text" placeholder="What should the community call you?" data-key="intro-name">
+
+    <div class="write-label">/ What brought me here</div>
+    <textarea class="decl-input" style="min-height:70px;" placeholder="The short version is fine." data-key="intro-brought"></textarea>
+
+    <div class="write-label">/ One word for how I feel right now</div>
+    <input class="decl-input" type="text" placeholder="Tired, hopeful, curious, stuck — whatever's true" data-key="intro-feel">
+
+    <div class="write-label">/ What I'm hoping shifts</div>
+    <textarea class="decl-input" style="min-height:70px;" placeholder="Be as specific or as vague as feels right." data-key="intro-hope"></textarea>
+
+    <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Copy My Prompt</button>
+  </div>
+
+  <div class="card">
+    <p style="color:var(--ink-faint);font-size:14px;">Tomorrow: Day 2, <em>Spot the Role</em>, waiting for you in the 5-Day Challenge classroom.</p>
+  </div>
+
+</div>
+</div>
+
+<div class="save-pill" id="savePill">SAVED</div>
+
+<script>
+const STORAGE_KEY = 'respark-start-here-v1';
+let data = {};
+let saveTimeout;
+
+try {
+  data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const v = data[el.dataset.key];
+    if (v) el.value = v;
+  });
+} catch(e) {}
+
+function save(key, val) {
+  data[key] = val;
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+    const pill = document.getElementById('savePill');
+    pill.classList.add('show');
+    setTimeout(() => pill.classList.remove('show'), 1500);
+  }, 500);
+}
+
+document.querySelectorAll('[data-key]').forEach(el => {
+  el.addEventListener('input', () => save(el.dataset.key, el.value));
+});
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + btn.dataset.page);
+    if (target) { target.classList.add('active'); window.scrollTo(0,0); }
+  });
+});
+
+function copyPrompt() {
+  const name = document.querySelector('[data-key="intro-name"]').value || '(name not given)';
+  const brought = document.querySelector('[data-key="intro-brought"]').value || '(not given)';
+  const feel = document.querySelector('[data-key="intro-feel"]').value || '(not given)';
+  const hope = document.querySelector('[data-key="intro-hope"]').value || '(not given)';
+
+  const prompt = `I just joined a coaching community called Respark, which helps people reconnect with who they are instead of trying to reinvent themselves. Help me write a short, warm, 3-4 sentence introduction post for the community feed.
+
+Here's what's true for me right now:
+- My name: ${name}
+- What brought me here: ${brought}
+- One word for how I feel right now: ${feel}
+- What I'm hoping shifts: ${hope}
+
+Write it so it sounds like me actually talking — not a list, not corporate, not overly polished. Just a real, human introduction to a room of people who get it.`;
+
+  navigator.clipboard.writeText(prompt).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied — Paste Into Any AI';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy My Prompt'; btn.classList.remove('copied'); }, 2500);
+  }).catch(() => {
+    alert('Copy failed — please manually copy the prompt text.');
+  });
+}
+</script>
+
+</body>
+</html>
